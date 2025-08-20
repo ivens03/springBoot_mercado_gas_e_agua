@@ -8,7 +8,5 @@ import java.util.List;
 
 @Repository
 public interface FornecedoresRepository extends JpaRepository<FornecedoresModel, Long> {
-
-    List<FornecedoresModel> findByAtivoTrue();
-
+  List<FornecedoresModel> findByFornecedorAtivoTrue();
 }

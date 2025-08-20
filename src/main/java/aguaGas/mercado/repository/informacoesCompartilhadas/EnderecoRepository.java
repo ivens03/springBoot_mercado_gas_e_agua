@@ -9,6 +9,6 @@ import java.util.List;
 @Repository
 public interface EnderecoRepository extends JpaRepository<EnderecoModel, Long> {
 
-    List<EnderecoModel> findByEndereco_ativoTrue();
+    List<EnderecoModel> findByEnderecoAtivoTrue();
 
 }

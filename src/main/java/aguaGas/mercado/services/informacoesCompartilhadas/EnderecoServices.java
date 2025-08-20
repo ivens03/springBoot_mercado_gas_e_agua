@@ -19,7 +19,7 @@ public class EnderecoServices {
 
     // Salvar
     public EnderecoModel salvarEndereco(EnderecoModel enderecoModel) {
-        enderecoModel.setEndereco_ativo(true);
+        enderecoModel.setEnderecoAtivo(true);
         return enderecoRepository.save(enderecoModel);
     }
 
@@ -30,19 +30,19 @@ public class EnderecoServices {
 
     // Listar todos
     public List<EnderecoModel> listarTodosEnderecos() {
-        return enderecoRepository.findByEndereco_ativoTrue();
+        return enderecoRepository.findByEnderecoAtivoTrue();
     }
 
     // Listar um por vez
-    public Optional<EnderecoModel> buscarEnderecoPorVez(Long id_endereco) {
-        return enderecoRepository.findById(id_endereco);
+    public Optional<EnderecoModel> buscarEnderecoPorVez(Long idEndereco) {
+        return enderecoRepository.findById(idEndereco);
     }
 
     // Delete logico
     @Transactional
-    public void apagarEndereco(Long id_endereco) {
-        enderecoRepository.findById(id_endereco).ifPresent(endereco -> {
-            endereco.setEndereco_ativo(false);
+    public void apagarEndereco(Long idEndereco) {
+        enderecoRepository.findById(idEndereco).ifPresent(endereco -> {
+            endereco.setEnderecoAtivo(false);
             enderecoRepository.save(endereco);
         });
     }

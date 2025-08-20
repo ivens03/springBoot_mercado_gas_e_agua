@@ -13,39 +13,40 @@ public class PedidoModel implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id_pedido;
+    private Long idPedido;
 
     @ManyToOne
-    @JoinColumn(name = "id_cliente", nullable = false)
+    @JoinColumn(name = "idCliente", nullable = false)
     private ClienteModel cliente;
 
     @ManyToOne
-    @JoinColumn(name = "id_fornecedor", nullable = false)
+    @JoinColumn(name = "idFornecedor", nullable = false)
     private ProdutosModel produto;
 
     private Byte quantidade;
-    private String modo_pagamento;
-    private BigDecimal valor_pagamento;
-    private BigDecimal valor_troco;
+    private String modoPagamento;
+    private BigDecimal valorPagamento;
+    private BigDecimal valorTroco;
+
 
     public PedidoModel() {}
 
-    public PedidoModel(Long id_pedido, ClienteModel cliente, ProdutosModel produto, Byte quantidade, String modo_pagamento, BigDecimal valor_pagamento, BigDecimal valor_troco) {
-        this.id_pedido = id_pedido;
+    public PedidoModel(Long idPedido, ClienteModel cliente, ProdutosModel produto, Byte quantidade, String modoPagamento, BigDecimal valorPagamento, BigDecimal valorTroco) {
+        this.idPedido = idPedido;
         this.cliente = cliente;
         this.produto = produto;
         this.quantidade = quantidade;
-        this.modo_pagamento = modo_pagamento;
-        this.valor_pagamento = valor_pagamento;
-        this.valor_troco = valor_troco;
+        this.modoPagamento = modoPagamento;
+        this.valorPagamento = valorPagamento;
+        this.valorTroco = valorTroco;
     }
 
-    public Long getId_pedido() {
-        return id_pedido;
+    public Long getIdPedido() {
+        return idPedido;
     }
 
-    public void setId_pedido(Long id_pedido) {
-        this.id_pedido = id_pedido;
+    public void setIdPedido(Long idPedido) {
+        this.idPedido = idPedido;
     }
 
     public ClienteModel getCliente() {
@@ -72,27 +73,27 @@ public class PedidoModel implements Serializable {
         this.quantidade = quantidade;
     }
 
-    public String getModo_pagamento() {
-        return modo_pagamento;
+    public String getModoPagamento() {
+        return modoPagamento;
     }
 
-    public void setModo_pagamento(String modo_pagamento) {
-        this.modo_pagamento = modo_pagamento;
+    public void setModoPagamento(String modoPagamento) {
+        this.modoPagamento = modoPagamento;
     }
 
-    public BigDecimal getValor_pagamento() {
-        return valor_pagamento;
+    public BigDecimal getValorPagamento() {
+        return valorPagamento;
     }
 
-    public void setValor_pagamento(BigDecimal valor_pagamento) {
-        this.valor_pagamento = valor_pagamento;
+    public void setValorPagamento(BigDecimal valorPagamento) {
+        this.valorPagamento = valorPagamento;
     }
 
-    public BigDecimal getValor_troco() {
-        return valor_troco;
+    public BigDecimal getValorTroco() {
+        return valorTroco;
     }
 
-    public void setValor_troco(BigDecimal valor_troco) {
-        this.valor_troco = valor_troco;
+    public void setValorTroco(BigDecimal valorTroco) {
+        this.valorTroco = valorTroco;
     }
 }

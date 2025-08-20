@@ -11,70 +11,71 @@ public class CustosAluguemModel implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id_custo_com_aluguel;
+    private Long idCustoComAluguel;
 
-    private Boolean paga_aluguel;
-    private BigDecimal valor_aluguel;
-    private BigDecimal valor_luz;
-    private BigDecimal valor_agua;
-    private BigDecimal telefone_com_net;
+    private Boolean pagaAluguel;
+    private BigDecimal valorAluguel;
+    private BigDecimal valorLuz;
+    private BigDecimal valorAgua;
+    private BigDecimal telefoneComNet;
+
 
     public CustosAluguemModel() {}
 
-    public CustosAluguemModel(Long id_custo_com_aluguel, Boolean paga_aluguel, BigDecimal valor_aluguel, BigDecimal valor_luz, BigDecimal valor_agua, BigDecimal telefone_com_net) {
-        this.id_custo_com_aluguel = id_custo_com_aluguel;
-        this.paga_aluguel = paga_aluguel;
-        this.valor_aluguel = valor_aluguel;
-        this.valor_luz = valor_luz;
-        this.valor_agua = valor_agua;
-        this.telefone_com_net = telefone_com_net;
+    public CustosAluguemModel(Long idCustoComAluguel, Boolean pagaAluguel, BigDecimal valorAluguel, BigDecimal valorLuz, BigDecimal valorAgua, BigDecimal telefoneComNet) {
+        this.idCustoComAluguel = idCustoComAluguel;
+        this.pagaAluguel = pagaAluguel;
+        this.valorAluguel = valorAluguel;
+        this.valorLuz = valorLuz;
+        this.valorAgua = valorAgua;
+        this.telefoneComNet = telefoneComNet;
     }
 
-    public Long getId_custo_com_aluguel() {
-        return id_custo_com_aluguel;
+    public Long getIdCustoComAluguel() {
+        return idCustoComAluguel;
     }
 
-    public void setId_custo_com_aluguel(Long id_custo_com_aluguel) {
-        this.id_custo_com_aluguel = id_custo_com_aluguel;
+    public void setIdCustoComAluguel(Long idCustoComAluguel) {
+        this.idCustoComAluguel = idCustoComAluguel;
     }
 
-    public Boolean getPaga_aluguel() {
-        return paga_aluguel;
+    public Boolean getPagaAluguel() {
+        return pagaAluguel;
     }
 
-    public void setPaga_aluguel(Boolean paga_aluguel) {
-        this.paga_aluguel = paga_aluguel;
+    public void setPagaAluguel(Boolean pagaAluguel) {
+        this.pagaAluguel = pagaAluguel;
     }
 
-    public BigDecimal getValor_aluguel() {
-        return valor_aluguel;
+    public BigDecimal getValorAluguel() {
+        return valorAluguel;
     }
 
-    public void setValor_aluguel(BigDecimal valor_aluguel) {
-        this.valor_aluguel = valor_aluguel;
+    public void setValorAluguel(BigDecimal valorAluguel) {
+        this.valorAluguel = valorAluguel;
     }
 
-    public BigDecimal getValor_luz() {
-        return valor_luz;
+    public BigDecimal getValorLuz() {
+        return valorLuz;
     }
 
-    public void setValor_luz(BigDecimal valor_luz) {
-        this.valor_luz = valor_luz;
+    public void setValorLuz(BigDecimal valorLuz) {
+        this.valorLuz = valorLuz;
     }
 
-    public BigDecimal getValor_agua() {
-        return valor_agua;
+    public BigDecimal getValorAgua() {
+        return valorAgua;
     }
 
-    public void setValor_agua(BigDecimal valor_agua) {
-        this.valor_agua = valor_agua;
+    public void setValorAgua(BigDecimal valorAgua) {
+        this.valorAgua = valorAgua;
     }
 
-    public BigDecimal getTelefone_com_net() {
-        return telefone_com_net;
+    public BigDecimal getTelefoneComNet() {
+        return telefoneComNet;
     }
 
-    public void setTelefone_com_net(BigDecimal telefone_com_net) {
-        this.telefone_com_net = telefone_com_net;
+    public void setTelefoneComNet(BigDecimal telefoneComNet) {
+        this.telefoneComNet = telefoneComNet;
     }
 }

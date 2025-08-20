@@ -1,4 +1,4 @@
-package aguaGas.mercado.services.informacoesCompartilhadas;
+package aguaGas.mercado.services.fornecedor;
 
 import aguaGas.mercado.model.fornecedor.FornecedoresModel;
 import aguaGas.mercado.repository.fornecedor.FornecedoresRepository;
@@ -20,7 +20,8 @@ public class FornecedoresServices {
 
     // Salvar
     public FornecedoresModel salvarFornecedor(FornecedoresModel fornecedoresModel) {
-        LocalDateTime dataLocal = LocalDateTime.now();
+        fornecedoresModel.setDiaRegistroDasInformacoes(LocalDateTime.now());
+        fornecedoresModel.setFornecedorAtivo(true);
         return fornecedoresRepository.save(fornecedoresModel);
     }
 
@@ -31,19 +32,19 @@ public class FornecedoresServices {
 
     // Listar todos
     public List<FornecedoresModel> listarFornecedores() {
-        return fornecedoresRepository.findByAtivoTrue();
+        return fornecedoresRepository.findByFornecedorAtivoTrue();
     }
 
     // Listar um por vez
-    public Optional<FornecedoresModel> listarFornecedorPorId(Long id_fornecedor) {
-        return fornecedoresRepository.findById(id_fornecedor);
+    public Optional<FornecedoresModel> listarFornecedorPorId(Long idFornecedor) {
+        return fornecedoresRepository.findById(idFornecedor);
     }
 
     //  Apagar
     @Transactional
-    public void apagarFornecedor(Long id_fornecedor) {
-        fornecedoresRepository.findById(id_fornecedor).ifPresent( fornecedor -> {
-            fornecedor.setFornecedor_ativo(false);
+    public void apagarFornecedor(Long idFornecedor) {
+        fornecedoresRepository.findById(idFornecedor).ifPresent( fornecedor -> {
+            fornecedor.setFornecedorAtivo(false);
             fornecedoresRepository.save(fornecedor);
         });
     }

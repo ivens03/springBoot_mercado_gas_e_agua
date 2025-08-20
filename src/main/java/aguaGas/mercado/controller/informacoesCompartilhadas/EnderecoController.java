@@ -26,10 +26,10 @@ public class EnderecoController {
 
     //Atualizar
     @PutMapping("/{id}")
-    public ResponseEntity<EnderecoModel> atualizarEndereco(@PathVariable Long id_endereco, @RequestBody EnderecoModel enderecoModel) {
-        return enderecoServices.buscarEnderecoPorVez(id_endereco)
+    public ResponseEntity<EnderecoModel> atualizarEndereco(@PathVariable Long idEndereco, @RequestBody EnderecoModel enderecoModel) {
+        return enderecoServices.buscarEnderecoPorVez(idEndereco)
                 .map( endereco -> {
-                    endereco.setId_endereco(id_endereco);
+                    endereco.setIdEndereco(idEndereco);
                     EnderecoModel atualizacao = enderecoServices.atualizarEndereco(endereco);
                     return ResponseEntity.ok().body(atualizacao);
                 })
@@ -45,16 +45,16 @@ public class EnderecoController {
 
     //Listagem por id
     @GetMapping("/{id}")
-    public ResponseEntity<EnderecoModel> listarEnderecoPorId(@PathVariable Long id_endereco) {
-        return enderecoServices.buscarEnderecoPorVez(id_endereco)
+    public ResponseEntity<EnderecoModel> listarEnderecoPorId(@PathVariable Long idEndereco) {
+        return enderecoServices.buscarEnderecoPorVez(idEndereco)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
     //Deletar
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletarEndereco(@PathVariable Long id_endereco) {
-        enderecoServices.apagarEndereco(id_endereco);
+    public ResponseEntity<Void> deletarEndereco(@PathVariable Long idEndereco) {
+        enderecoServices.apagarEndereco(idEndereco);
         return ResponseEntity.noContent().build();
     }
 

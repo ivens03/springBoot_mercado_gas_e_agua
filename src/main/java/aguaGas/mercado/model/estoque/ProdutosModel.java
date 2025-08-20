@@ -12,36 +12,37 @@ public class ProdutosModel implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id_produtos;
+    private Long idProdutos;
 
     @ManyToOne
-    @JoinColumn(name = "id_fornecedor")
+    @JoinColumn(name = "idFornecedor")
     private FornecedoresModel fornecedor;
 
-    private BigDecimal custos_para_valor_liquido;
-    private BigDecimal preco_para_venda;
-    private Byte valor_lucro_porcetagem;
-    private int quantidade_produto_estoque;
-    private int quantidade_solicitacao_reposicao;
+    private BigDecimal custosParaValorLiquido;
+    private BigDecimal precoParaVenda;
+    private Byte valorLucroPorcetagem;
+    private int quantidadeProdutoEstoque;
+    private int quantidadeSolicitacaoReposicao;
+
 
     public ProdutosModel() {}
 
-    public ProdutosModel(Long id_produtos, FornecedoresModel fornecedor, BigDecimal custos_para_valor_liquido, BigDecimal preco_para_venda, Byte valor_lucro_porcetagem, int quantidade_produto_estoque, int quantidade_solicitacao_reposicao) {
-        this.id_produtos = id_produtos;
+    public ProdutosModel(Long idProdutos, FornecedoresModel fornecedor, BigDecimal custosParaValorLiquido, BigDecimal precoParaVenda, Byte valorLucroPorcetagem, int quantidadeProdutoEstoque, int quantidadeSolicitacaoReposicao) {
+        this.idProdutos = idProdutos;
         this.fornecedor = fornecedor;
-        this.custos_para_valor_liquido = custos_para_valor_liquido;
-        this.preco_para_venda = preco_para_venda;
-        this.valor_lucro_porcetagem = valor_lucro_porcetagem;
-        this.quantidade_produto_estoque = quantidade_produto_estoque;
-        this.quantidade_solicitacao_reposicao = quantidade_solicitacao_reposicao;
+        this.custosParaValorLiquido = custosParaValorLiquido;
+        this.precoParaVenda = precoParaVenda;
+        this.valorLucroPorcetagem = valorLucroPorcetagem;
+        this.quantidadeProdutoEstoque = quantidadeProdutoEstoque;
+        this.quantidadeSolicitacaoReposicao = quantidadeSolicitacaoReposicao;
     }
 
-    public Long getId_produtos() {
-        return id_produtos;
+    public Long getIdProdutos() {
+        return idProdutos;
     }
 
-    public void setId_produtos(Long id_produtos) {
-        this.id_produtos = id_produtos;
+    public void setIdProdutos(Long idProdutos) {
+        this.idProdutos = idProdutos;
     }
 
     public FornecedoresModel getFornecedor() {
@@ -52,43 +53,43 @@ public class ProdutosModel implements Serializable {
         this.fornecedor = fornecedor;
     }
 
-    public BigDecimal getCustos_para_valor_liquido() {
-        return custos_para_valor_liquido;
+    public BigDecimal getCustosParaValorLiquido() {
+        return custosParaValorLiquido;
     }
 
-    public void setCustos_para_valor_liquido(BigDecimal custos_para_valor_liquido) {
-        this.custos_para_valor_liquido = custos_para_valor_liquido;
+    public void setCustosParaValorLiquido(BigDecimal custosParaValorLiquido) {
+        this.custosParaValorLiquido = custosParaValorLiquido;
     }
 
-    public BigDecimal getPreco_para_venda() {
-        return preco_para_venda;
+    public BigDecimal getPrecoParaVenda() {
+        return precoParaVenda;
     }
 
-    public void setPreco_para_venda(BigDecimal preco_para_venda) {
-        this.preco_para_venda = preco_para_venda;
+    public void setPrecoParaVenda(BigDecimal precoParaVenda) {
+        this.precoParaVenda = precoParaVenda;
     }
 
-    public Byte getValor_lucro_porcetagem() {
-        return valor_lucro_porcetagem;
+    public Byte getValorLucroPorcetagem() {
+        return valorLucroPorcetagem;
     }
 
-    public void setValor_lucro_porcetagem(Byte valor_lucro_porcetagem) {
-        this.valor_lucro_porcetagem = valor_lucro_porcetagem;
+    public void setValorLucroPorcetagem(Byte valorLucroPorcetagem) {
+        this.valorLucroPorcetagem = valorLucroPorcetagem;
     }
 
-    public int getQuantidade_produto_estoque() {
-        return quantidade_produto_estoque;
+    public int getQuantidadeProdutoEstoque() {
+        return quantidadeProdutoEstoque;
     }
 
-    public void setQuantidade_produto_estoque(int quantidade_produto_estoque) {
-        this.quantidade_produto_estoque = quantidade_produto_estoque;
+    public void setQuantidadeProdutoEstoque(int quantidadeProdutoEstoque) {
+        this.quantidadeProdutoEstoque = quantidadeProdutoEstoque;
     }
 
-    public int getQuantidade_solicitacao_reposicao() {
-        return quantidade_solicitacao_reposicao;
+    public int getQuantidadeSolicitacaoReposicao() {
+        return quantidadeSolicitacaoReposicao;
     }
 
-    public void setQuantidade_solicitacao_reposicao(int quantidade_solicitacao_reposicao) {
-        this.quantidade_solicitacao_reposicao = quantidade_solicitacao_reposicao;
+    public void setQuantidadeSolicitacaoReposicao(int quantidadeSolicitacaoReposicao) {
+        this.quantidadeSolicitacaoReposicao = quantidadeSolicitacaoReposicao;
     }
 }

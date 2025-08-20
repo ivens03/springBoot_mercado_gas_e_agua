@@ -13,140 +13,149 @@ public class FornecedoresModel implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id_fornecedor;
+    private Long idFornecedor;
 
-    private String nome_fornecedor;
-    private String cnpj_fornecedor;
-    private String telefone_fornecedor;
-    private String email_fornecedor;
-    private int prazo_para_pagamento;
-    private int prazo_de_entrega;
-    private byte valor_do_desconto;
-    private int quantidade_minima_do_pedido;
-    private String nome_produto;
-    private BigDecimal custo_bruto_produtos;
-    private BigDecimal custo_bruto_produto_unitario;
-    private LocalDateTime dia_registros_das_informacoes;
-    private boolean fornecedor_ativo;
+    private String nomeFornecedor;
+    private String cnpjFornecedor;
+    private String telefoneFornecedor;
+    private String emailFornecedor;
+    private int prazoParaPagamento;
+    private int prazoDeEntrega;
+    private byte valorDoDesconto;
+    private int quantidadeMinimaDoPedido;
+    private String nomeProduto;
+    private BigDecimal custoBrutoProdutos;
+    private BigDecimal custoBrutoProdutoUnitario;
+    private LocalDateTime diaRegistroDasInformacoes;
+
+    private boolean fornecedorAtivo;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_endereco", referencedColumnName = "id_endereco")
+    @JoinColumn(name = "idEndereco", referencedColumnName = "idEndereco")
     private EnderecoModel endereco;
 
     public FornecedoresModel() {}
 
-    public FornecedoresModel(Long id_fornecedor, String nome_fornecedor, String cnpj_fornecedor, String telefone_fornecedor, String email_fornecedor, int prazo_para_pagamento, int prazo_de_entrega, byte valor_do_desconto, int quantidade_minima_do_pedido, String nome_produto, BigDecimal custo_bruto_produtos, BigDecimal custo_bruto_produto_unitario, EnderecoModel endereco, LocalDateTime dia_registros_das_informacoes, boolean fornecedor_ativo) {
-        this.id_fornecedor = id_fornecedor;
-        this.nome_fornecedor = nome_fornecedor;
-        this.cnpj_fornecedor = cnpj_fornecedor;
-        this.telefone_fornecedor = telefone_fornecedor;
-        this.email_fornecedor = email_fornecedor;
-        this.prazo_para_pagamento = prazo_para_pagamento;
-        this.prazo_de_entrega = prazo_de_entrega;
-        this.valor_do_desconto = valor_do_desconto;
-        this.quantidade_minima_do_pedido = quantidade_minima_do_pedido;
-        this.nome_produto = nome_produto;
-        this.custo_bruto_produtos = custo_bruto_produtos;
-        this.custo_bruto_produto_unitario = custo_bruto_produto_unitario;
+    public FornecedoresModel(Long idFornecedor, String nomeFornecedor, String cnpjFornecedor, String telefoneFornecedor, String emailFornecedor, int prazoParaPagamento, int prazoDeEntrega, byte valorDoDesconto, int quantidadeMinimaDoPedido, String nomeProduto, BigDecimal custoBrutoProdutos, BigDecimal custoBrutoProdutoUnitario, LocalDateTime diaRegistroDasInformacoes, boolean fornecedorAtivo, EnderecoModel endereco) {
+        this.idFornecedor = idFornecedor;
+        this.nomeFornecedor = nomeFornecedor;
+        this.cnpjFornecedor = cnpjFornecedor;
+        this.telefoneFornecedor = telefoneFornecedor;
+        this.emailFornecedor = emailFornecedor;
+        this.prazoParaPagamento = prazoParaPagamento;
+        this.prazoDeEntrega = prazoDeEntrega;
+        this.valorDoDesconto = valorDoDesconto;
+        this.quantidadeMinimaDoPedido = quantidadeMinimaDoPedido;
+        this.nomeProduto = nomeProduto;
+        this.custoBrutoProdutos = custoBrutoProdutos;
+        this.custoBrutoProdutoUnitario = custoBrutoProdutoUnitario;
+        this.diaRegistroDasInformacoes = diaRegistroDasInformacoes;
+        this.fornecedorAtivo = fornecedorAtivo;
         this.endereco = endereco;
-        this.dia_registros_das_informacoes = dia_registros_das_informacoes;
-        this.fornecedor_ativo = fornecedor_ativo;
     }
 
-    public Long getId_fornecedor() {
-        return id_fornecedor;
+    public Long getIdFornecedor() {
+        return idFornecedor;
     }
 
-    public void setId_fornecedor(Long id_fornecedor) {
-        this.id_fornecedor = id_fornecedor;
+    public void setIdFornecedor(Long idFornecedor) {
+        this.idFornecedor = idFornecedor;
     }
 
-    public String getNome_fornecedor() {
-        return nome_fornecedor;
+    public String getNomeFornecedor() {
+        return nomeFornecedor;
     }
 
-    public void setNome_fornecedor(String nome_fornecedor) {
-        this.nome_fornecedor = nome_fornecedor;
+    public void setNomeFornecedor(String nomeFornecedor) {
+        this.nomeFornecedor = nomeFornecedor;
     }
 
-    public String getCnpj_fornecedor() {
-        return cnpj_fornecedor;
+    public String getCnpjFornecedor() {
+        return cnpjFornecedor;
     }
 
-    public void setCnpj_fornecedor(String cnpj_fornecedor) {
-        this.cnpj_fornecedor = cnpj_fornecedor;
+    public void setCnpjFornecedor(String cnpjFornecedor) {
+        this.cnpjFornecedor = cnpjFornecedor;
     }
 
-    public String getTelefone_fornecedor() {
-        return telefone_fornecedor;
+    public String getTelefoneFornecedor() {
+        return telefoneFornecedor;
     }
 
-    public void setTelefone_fornecedor(String telefone_fornecedor) {
-        this.telefone_fornecedor = telefone_fornecedor;
+    public void setTelefoneFornecedor(String telefoneFornecedor) {
+        this.telefoneFornecedor = telefoneFornecedor;
     }
 
-    public String getEmail_fornecedor() {
-        return email_fornecedor;
+    public String getEmailFornecedor() {
+        return emailFornecedor;
     }
 
-    public void setEmail_fornecedor(String email_fornecedor) {
-        this.email_fornecedor = email_fornecedor;
+    public void setEmailFornecedor(String emailFornecedor) {
+        this.emailFornecedor = emailFornecedor;
     }
 
-    public int getPrazo_para_pagamento() {
-        return prazo_para_pagamento;
+    public int getPrazoParaPagamento() {
+        return prazoParaPagamento;
     }
 
-    public void setPrazo_para_pagamento(int prazo_para_pagamento) {
-        this.prazo_para_pagamento = prazo_para_pagamento;
+    public void setPrazoParaPagamento(int prazoParaPagamento) {
+        this.prazoParaPagamento = prazoParaPagamento;
     }
 
-    public int getPrazo_de_entrega() {
-        return prazo_de_entrega;
+    public int getPrazoDeEntrega() {
+        return prazoDeEntrega;
     }
 
-    public void setPrazo_de_entrega(int prazo_de_entrega) {
-        this.prazo_de_entrega = prazo_de_entrega;
+    public void setPrazoDeEntrega(int prazoDeEntrega) {
+        this.prazoDeEntrega = prazoDeEntrega;
     }
 
-    public byte getValor_do_desconto() {
-        return valor_do_desconto;
+    public byte getValorDoDesconto() {
+        return valorDoDesconto;
     }
 
-    public void setValor_do_desconto(byte valor_do_desconto) {
-        this.valor_do_desconto = valor_do_desconto;
+    public void setValorDoDesconto(byte valorDoDesconto) {
+        this.valorDoDesconto = valorDoDesconto;
     }
 
-    public int getQuantidade_minima_do_pedido() {
-        return quantidade_minima_do_pedido;
+    public int getQuantidadeMinimaDoPedido() {
+        return quantidadeMinimaDoPedido;
     }
 
-    public void setQuantidade_minima_do_pedido(int quantidade_minima_do_pedido) {
-        this.quantidade_minima_do_pedido = quantidade_minima_do_pedido;
+    public void setQuantidadeMinimaDoPedido(int quantidadeMinimaDoPedido) {
+        this.quantidadeMinimaDoPedido = quantidadeMinimaDoPedido;
     }
 
-    public String getNome_produto() {
-        return nome_produto;
+    public String getNomeProduto() {
+        return nomeProduto;
     }
 
-    public void setNome_produto(String nome_produto) {
-        this.nome_produto = nome_produto;
+    public void setNomeProduto(String nomeProduto) {
+        this.nomeProduto = nomeProduto;
     }
 
-    public BigDecimal getCusto_bruto_produtos() {
-        return custo_bruto_produtos;
+    public BigDecimal getCustoBrutoProdutos() {
+        return custoBrutoProdutos;
     }
 
-    public void setCusto_bruto_produtos(BigDecimal custo_bruto_produtos) {
-        this.custo_bruto_produtos = custo_bruto_produtos;
+    public void setCustoBrutoProdutos(BigDecimal custoBrutoProdutos) {
+        this.custoBrutoProdutos = custoBrutoProdutos;
     }
 
-    public BigDecimal getCusto_bruto_produto_unitario() {
-        return custo_bruto_produto_unitario;
+    public BigDecimal getCustoBrutoProdutoUnitario() {
+        return custoBrutoProdutoUnitario;
     }
 
-    public void setCusto_bruto_produto_unitario(BigDecimal custo_bruto_produto_unitario) {
-        this.custo_bruto_produto_unitario = custo_bruto_produto_unitario;
+    public void setCustoBrutoProdutoUnitario(BigDecimal custoBrutoProdutoUnitario) {
+        this.custoBrutoProdutoUnitario = custoBrutoProdutoUnitario;
+    }
+
+    public LocalDateTime getDiaRegistroDasInformacoes() {
+        return diaRegistroDasInformacoes;
+    }
+
+    public void setDiaRegistroDasInformacoes(LocalDateTime diaRegistroDasInformacoes) {
+        this.diaRegistroDasInformacoes = diaRegistroDasInformacoes;
     }
 
     public EnderecoModel getEndereco() {
@@ -157,19 +166,11 @@ public class FornecedoresModel implements Serializable {
         this.endereco = endereco;
     }
 
-    public LocalDateTime getDia_registros_das_informacoes() {
-        return dia_registros_das_informacoes;
+    public boolean isFornecedorAtivo() {
+        return fornecedorAtivo;
     }
 
-    public void setDia_registros_das_informacoes(LocalDateTime dia_registros_das_informacoes) {
-        this.dia_registros_das_informacoes = dia_registros_das_informacoes;
-    }
-
-    public boolean isFornecedor_ativo() {
-        return fornecedor_ativo;
-    }
-
-    public void setFornecedor_ativo(boolean fornecedor_ativo) {
-        this.fornecedor_ativo = fornecedor_ativo;
+    public void setFornecedorAtivo(boolean fornecedorAtivo) {
+        this.fornecedorAtivo = fornecedorAtivo;
     }
 }

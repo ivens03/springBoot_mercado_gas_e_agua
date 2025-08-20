@@ -10,37 +10,37 @@ public class EnderecoModel implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id_endereco;
+    private Long idEndereco;
 
     private String estado;
     private String cidade;
     private String logradouro;
     private String cep;
     private String bairro;
-    private int numero_logradouro;
+    private int numeroLogradouro;
     private String complemento;
-    private Boolean endereco_ativo;
+    private Boolean enderecoAtivo;
 
     public EnderecoModel() {}
 
-    public EnderecoModel(Long id_endereco, String estado, String cidade, String logradouro, String cep, String bairro, int numero_logradouro, String complemento, Boolean endereco_ativo) {
-        this.id_endereco = id_endereco;
+    public EnderecoModel(Long idEndereco, String estado, String cidade, String logradouro, String cep, String bairro, int numeroLogradouro, String complemento, Boolean enderecoAtivo) {
+        this.idEndereco = idEndereco;
         this.estado = estado;
         this.cidade = cidade;
         this.logradouro = logradouro;
         this.cep = cep;
         this.bairro = bairro;
-        this.numero_logradouro = numero_logradouro;
+        this.numeroLogradouro = numeroLogradouro;
         this.complemento = complemento;
-        this.endereco_ativo = endereco_ativo;
+        this.enderecoAtivo = enderecoAtivo;
     }
 
-    public Long getId_endereco() {
-        return id_endereco;
+    public Long getIdEndereco() {
+        return idEndereco;
     }
 
-    public void setId_endereco(Long id_endereco) {
-        this.id_endereco = id_endereco;
+    public void setIdEndereco(Long idEndereco) {
+        this.idEndereco = idEndereco;
     }
 
     public String getEstado() {
@@ -83,12 +83,12 @@ public class EnderecoModel implements Serializable {
         this.bairro = bairro;
     }
 
-    public int getNumero_logradouro() {
-        return numero_logradouro;
+    public int getNumeroLogradouro() {
+        return numeroLogradouro;
     }
 
-    public void setNumero_logradouro(int numero_logradouro) {
-        this.numero_logradouro = numero_logradouro;
+    public void setNumeroLogradouro(int numeroLogradouro) {
+        this.numeroLogradouro = numeroLogradouro;
     }
 
     public String getComplemento() {
@@ -99,11 +99,11 @@ public class EnderecoModel implements Serializable {
         this.complemento = complemento;
     }
 
-    public Boolean getEndereco_ativo() {
-        return endereco_ativo;
+    public Boolean getEnderecoAtivo() {
+        return enderecoAtivo;
     }
 
-    public void setEndereco_ativo(Boolean endereco_ativo) {
-        this.endereco_ativo = endereco_ativo;
+    public void setEnderecoAtivo(Boolean enderecoAtivo) {
+        this.enderecoAtivo = enderecoAtivo;
     }
 }
