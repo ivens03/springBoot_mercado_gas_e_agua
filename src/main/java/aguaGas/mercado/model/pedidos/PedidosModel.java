@@ -6,10 +6,11 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "pedidos")
-public class PedidoModel implements Serializable {
+public class PedidosModel implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,22 +24,29 @@ public class PedidoModel implements Serializable {
     @JoinColumn(name = "idFornecedor", nullable = false)
     private ProdutosModel produto;
 
+    @ManyToOne
+    @JoinColumn(name = "precoParaVenda", nullable = false)
+    private ProdutosModel precoParaVenda;
+
     private Byte quantidade;
     private String modoPagamento;
     private BigDecimal valorPagamento;
     private BigDecimal valorTroco;
+    private LocalDateTime dataPedido;
 
 
-    public PedidoModel() {}
+    public PedidosModel() {}
 
-    public PedidoModel(Long idPedido, ClienteModel cliente, ProdutosModel produto, Byte quantidade, String modoPagamento, BigDecimal valorPagamento, BigDecimal valorTroco) {
+    public PedidosModel(Long idPedido, ClienteModel cliente, ProdutosModel produto, ProdutosModel precoParaVenda, Byte quantidade, String modoPagamento, BigDecimal valorPagamento, BigDecimal valorTroco, LocalDateTime dataPedido) {
         this.idPedido = idPedido;
         this.cliente = cliente;
         this.produto = produto;
+        this.precoParaVenda = precoParaVenda;
         this.quantidade = quantidade;
         this.modoPagamento = modoPagamento;
         this.valorPagamento = valorPagamento;
         this.valorTroco = valorTroco;
+        this.dataPedido = dataPedido;
     }
 
     public Long getIdPedido() {
@@ -95,5 +103,21 @@ public class PedidoModel implements Serializable {
 
     public void setValorTroco(BigDecimal valorTroco) {
         this.valorTroco = valorTroco;
+    }
+
+    public LocalDateTime getDataPedido() {
+        return dataPedido;
+    }
+
+    public void setDataPedido(LocalDateTime dataPedido) {
+        this.dataPedido = dataPedido;
+    }
+
+    public ProdutosModel getPrecoParaVenda() {
+        return precoParaVenda;
+    }
+
+    public void setPrecoParaVenda(ProdutosModel precoParaVenda) {
+        this.precoParaVenda = precoParaVenda;
     }
 }

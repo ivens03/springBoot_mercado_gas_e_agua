@@ -7,28 +7,28 @@ import java.math.BigDecimal;
 
 @Entity
 @Table(name = "custo_com_aluguel")
-public class CustosAluguemModel implements Serializable {
+public class CustosAluguelModel implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idCustoComAluguel;
 
-    private Boolean pagaAluguel;
+    private BigDecimal iptu;
     private BigDecimal valorAluguel;
     private BigDecimal valorLuz;
     private BigDecimal valorAgua;
     private BigDecimal telefoneComNet;
 
 
-    public CustosAluguemModel() {}
+    public CustosAluguelModel() {}
 
-    public CustosAluguemModel(Long idCustoComAluguel, Boolean pagaAluguel, BigDecimal valorAluguel, BigDecimal valorLuz, BigDecimal valorAgua, BigDecimal telefoneComNet) {
+    public CustosAluguelModel(Long idCustoComAluguel, BigDecimal valorAluguel, BigDecimal valorLuz, BigDecimal valorAgua, BigDecimal telefoneComNet, BigDecimal iptu) {
         this.idCustoComAluguel = idCustoComAluguel;
-        this.pagaAluguel = pagaAluguel;
         this.valorAluguel = valorAluguel;
         this.valorLuz = valorLuz;
         this.valorAgua = valorAgua;
         this.telefoneComNet = telefoneComNet;
+        this.iptu = iptu;
     }
 
     public Long getIdCustoComAluguel() {
@@ -37,14 +37,6 @@ public class CustosAluguemModel implements Serializable {
 
     public void setIdCustoComAluguel(Long idCustoComAluguel) {
         this.idCustoComAluguel = idCustoComAluguel;
-    }
-
-    public Boolean getPagaAluguel() {
-        return pagaAluguel;
-    }
-
-    public void setPagaAluguel(Boolean pagaAluguel) {
-        this.pagaAluguel = pagaAluguel;
     }
 
     public BigDecimal getValorAluguel() {
@@ -77,5 +69,13 @@ public class CustosAluguemModel implements Serializable {
 
     public void setTelefoneComNet(BigDecimal telefoneComNet) {
         this.telefoneComNet = telefoneComNet;
+    }
+
+    public BigDecimal getIptu() {
+        return iptu;
+    }
+
+    public void setIptu(BigDecimal iptu) {
+        this.iptu = iptu;
     }
 }
