@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "custo_com_aluguel")
@@ -18,17 +19,18 @@ public class CustosAluguelModel implements Serializable {
     private BigDecimal valorLuz;
     private BigDecimal valorAgua;
     private BigDecimal telefoneComNet;
-
+    private LocalDate locacaoMensal;
 
     public CustosAluguelModel() {}
 
-    public CustosAluguelModel(Long idCustoComAluguel, BigDecimal valorAluguel, BigDecimal valorLuz, BigDecimal valorAgua, BigDecimal telefoneComNet, BigDecimal iptu) {
+    public CustosAluguelModel(Long idCustoComAluguel, BigDecimal valorAluguel, BigDecimal valorLuz, BigDecimal valorAgua, BigDecimal telefoneComNet, BigDecimal iptu, LocalDate locacaoMensal) {
         this.idCustoComAluguel = idCustoComAluguel;
         this.valorAluguel = valorAluguel;
         this.valorLuz = valorLuz;
         this.valorAgua = valorAgua;
         this.telefoneComNet = telefoneComNet;
         this.iptu = iptu;
+        this.locacaoMensal = locacaoMensal;
     }
 
     public Long getIdCustoComAluguel() {
@@ -77,5 +79,13 @@ public class CustosAluguelModel implements Serializable {
 
     public void setIptu(BigDecimal iptu) {
         this.iptu = iptu;
+    }
+
+    public LocalDate getLocacaoMensal() {
+        return locacaoMensal;
+    }
+
+    public void setLocacaoMensal(LocalDate locacaoMensal) {
+        this.locacaoMensal = locacaoMensal;
     }
 }

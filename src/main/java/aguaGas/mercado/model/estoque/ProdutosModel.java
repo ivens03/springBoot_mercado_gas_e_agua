@@ -24,7 +24,6 @@ public class ProdutosModel implements Serializable {
     private int quantidadeProdutoEstoque;
     private int quantidadeSolicitacaoReposicao;
 
-
     public ProdutosModel() {}
 
     public ProdutosModel(Long idProdutos, FornecedoresModel fornecedor, BigDecimal custosParaValorLiquido, BigDecimal precoParaVenda, Byte valorLucroPorcetagem, int quantidadeProdutoEstoque, int quantidadeSolicitacaoReposicao) {
