@@ -1,10 +1,12 @@
 package aguaGas.mercado.model.estoque;
 
+import aguaGas.mercado.model.fornecedor.FornecedorProdutoModel;
 import aguaGas.mercado.model.fornecedor.FornecedoresModel;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Table(name = "produtos")
@@ -18,22 +20,27 @@ public class ProdutosModel implements Serializable {
     @JoinColumn(name = "idFornecedor")
     private FornecedoresModel fornecedor;
 
-    private BigDecimal custosParaValorLiquido;
-    private BigDecimal precoParaVenda;
-    private Byte valorLucroPorcetagem;
-    private int quantidadeProdutoEstoque;
-    private int quantidadeSolicitacaoReposicao;
+    /*--- Informação base ---*/
+    private String nomeProduto;
+    private String descricaoProduto;
+    private BigDecimal precoVenda;
+    private int estoqueMinimo;
+    private BigDecimal margemLucro;
+
+    @OneToMany(mappedBy = "idFornecedorProduto", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<FornecedorProdutoModel> catalogoProdutos;
 
     public ProdutosModel() {}
 
-    public ProdutosModel(Long idProdutos, FornecedoresModel fornecedor, BigDecimal custosParaValorLiquido, BigDecimal precoParaVenda, Byte valorLucroPorcetagem, int quantidadeProdutoEstoque, int quantidadeSolicitacaoReposicao) {
+    public ProdutosModel(Long idProdutos, FornecedoresModel fornecedor, String nomeProduto, String descricaoProduto, BigDecimal precoVenda, int estoqueMinimo, BigDecimal margemLucro, List<FornecedorProdutoModel> catalogoProdutos) {
         this.idProdutos = idProdutos;
         this.fornecedor = fornecedor;
-        this.custosParaValorLiquido = custosParaValorLiquido;
-        this.precoParaVenda = precoParaVenda;
-        this.valorLucroPorcetagem = valorLucroPorcetagem;
-        this.quantidadeProdutoEstoque = quantidadeProdutoEstoque;
-        this.quantidadeSolicitacaoReposicao = quantidadeSolicitacaoReposicao;
+        this.nomeProduto = nomeProduto;
+        this.descricaoProduto = descricaoProduto;
+        this.precoVenda = precoVenda;
+        this.estoqueMinimo = estoqueMinimo;
+        this.margemLucro = margemLucro;
+        this.catalogoProdutos = catalogoProdutos;
     }
 
     public Long getIdProdutos() {
@@ -52,43 +59,51 @@ public class ProdutosModel implements Serializable {
         this.fornecedor = fornecedor;
     }
 
-    public BigDecimal getCustosParaValorLiquido() {
-        return custosParaValorLiquido;
+    public String getNomeProduto() {
+        return nomeProduto;
     }
 
-    public void setCustosParaValorLiquido(BigDecimal custosParaValorLiquido) {
-        this.custosParaValorLiquido = custosParaValorLiquido;
+    public void setNomeProduto(String nomeProduto) {
+        this.nomeProduto = nomeProduto;
     }
 
-    public BigDecimal getPrecoParaVenda() {
-        return precoParaVenda;
+    public String getDescricaoProduto() {
+        return descricaoProduto;
     }
 
-    public void setPrecoParaVenda(BigDecimal precoParaVenda) {
-        this.precoParaVenda = precoParaVenda;
+    public void setDescricaoProduto(String descricaoProduto) {
+        this.descricaoProduto = descricaoProduto;
     }
 
-    public Byte getValorLucroPorcetagem() {
-        return valorLucroPorcetagem;
+    public BigDecimal getPrecoVenda() {
+        return precoVenda;
     }
 
-    public void setValorLucroPorcetagem(Byte valorLucroPorcetagem) {
-        this.valorLucroPorcetagem = valorLucroPorcetagem;
+    public void setPrecoVenda(BigDecimal precoVenda) {
+        this.precoVenda = precoVenda;
     }
 
-    public int getQuantidadeProdutoEstoque() {
-        return quantidadeProdutoEstoque;
+    public int getEstoqueMinimo() {
+        return estoqueMinimo;
     }
 
-    public void setQuantidadeProdutoEstoque(int quantidadeProdutoEstoque) {
-        this.quantidadeProdutoEstoque = quantidadeProdutoEstoque;
+    public void setEstoqueMinimo(int estoqueMinimo) {
+        this.estoqueMinimo = estoqueMinimo;
     }
 
-    public int getQuantidadeSolicitacaoReposicao() {
-        return quantidadeSolicitacaoReposicao;
+    public BigDecimal getMargemLucro() {
+        return margemLucro;
     }
 
-    public void setQuantidadeSolicitacaoReposicao(int quantidadeSolicitacaoReposicao) {
-        this.quantidadeSolicitacaoReposicao = quantidadeSolicitacaoReposicao;
+    public void setMargemLucro(BigDecimal margemLucro) {
+        this.margemLucro = margemLucro;
+    }
+
+    public List<FornecedorProdutoModel> getCatalogoProdutos() {
+        return catalogoProdutos;
+    }
+
+    public void setCatalogoProdutos(List<FornecedorProdutoModel> catalogoProdutos) {
+        this.catalogoProdutos = catalogoProdutos;
     }
 }

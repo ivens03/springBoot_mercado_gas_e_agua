@@ -22,7 +22,7 @@ public class FuncionarioModel implements Serializable {
     private LocalDate dataAdmissao;
     private LocalDate dataDemissao;
 
-    @OneToMany(mappedBy = "custosMensalFuncionario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "idCustosFuncionario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<CustosFuncionariosModel> historicoCustos;
 
     public FuncionarioModel () {}

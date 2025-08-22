@@ -16,9 +16,4 @@ public class CustosFuncionariosServices {
     }
 
     //salvar salario
-/*    public CustosFuncionariosModel salvarCustosFuncionario (CustosFuncionariosModel custosFuncionariosModel) {
-        BigDecimal decimoTerceiro = custosFuncionariosModel.getSalarioMensalFuncionario();
-        custosFuncionariosModel.setDecimoTerceiroSalarioFuncionario(decimoTerceiro);
-    }*/
-
 }

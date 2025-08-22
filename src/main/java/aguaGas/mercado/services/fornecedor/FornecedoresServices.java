@@ -20,7 +20,6 @@ public class FornecedoresServices {
 
     // Salvar
     public FornecedoresModel salvarFornecedor(FornecedoresModel fornecedoresModel) {
-        fornecedoresModel.setDiaRegistroDasInformacoes(LocalDateTime.now());
         fornecedoresModel.setFornecedorAtivo(true);
         return fornecedoresRepository.save(fornecedoresModel);
     }
