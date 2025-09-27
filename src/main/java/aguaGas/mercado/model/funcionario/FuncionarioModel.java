@@ -21,13 +21,14 @@ public class FuncionarioModel implements Serializable {
     private String cargo;
     private LocalDate dataAdmissao;
     private LocalDate dataDemissao;
+    private Boolean funcionarioAtivo;
 
     @OneToMany(mappedBy = "idCustosFuncionario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<CustosFuncionariosModel> historicoCustos;
 
     public FuncionarioModel () {}
 
-    public FuncionarioModel(Long idFuncionarios, String nomeCompleto, String cpf, String cargo, LocalDate dataAdmissao, LocalDate dataDemissao, List<CustosFuncionariosModel> historicoCustos) {
+    public FuncionarioModel(Long idFuncionarios, String nomeCompleto, String cpf, String cargo, LocalDate dataAdmissao, LocalDate dataDemissao, List<CustosFuncionariosModel> historicoCustos, Boolean funcionarioAtivo) {
         this.idFuncionarios = idFuncionarios;
         this.nomeCompleto = nomeCompleto;
         this.cpf = cpf;
@@ -35,6 +36,7 @@ public class FuncionarioModel implements Serializable {
         this.dataAdmissao = dataAdmissao;
         this.dataDemissao = dataDemissao;
         this.historicoCustos = historicoCustos;
+        this.funcionarioAtivo = funcionarioAtivo;
     }
 
     public Long getIdFuncionarios() {
@@ -91,5 +93,13 @@ public class FuncionarioModel implements Serializable {
 
     public void setHistoricoCustos(List<CustosFuncionariosModel> historicoCustos) {
         this.historicoCustos = historicoCustos;
+    }
+
+    public Boolean getFuncionarioAtivo() {
+        return funcionarioAtivo;
+    }
+
+    public void setFuncionarioAtivo(Boolean funcionarioAtivo) {
+        this.funcionarioAtivo = funcionarioAtivo;
     }
 }

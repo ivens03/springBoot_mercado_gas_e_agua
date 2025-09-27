@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-/// fazer um model para funcionarios
+
 @Entity
 @Table(name = "custos_com_funcionarios")
 public class CustosFuncionariosModel implements Serializable {
@@ -28,7 +28,7 @@ public class CustosFuncionariosModel implements Serializable {
 
     /* --- Encargos e Provisões --- */
     private BigDecimal valorFgts; // Geralmente 8% sobre o salário
-    private BigDecimal valorInssPatronal;
+    private BigDecimal valorInssPatronal; // Geralmente entre 7,5% a 9% do salário
     private BigDecimal provisaoDecimoTerceiro; // 1/12 do custo total
     private BigDecimal provisaoFerias; // 1/12 do salário
     private BigDecimal provisaoTercoFerias; // 1/3 da provisão de férias
