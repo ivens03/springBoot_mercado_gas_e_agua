@@ -1,5 +1,7 @@
 package aguaGas.mercado.services.informacoesCompartilhadas;
 
+import aguaGas.mercado.dto.informacoesCompartilhadas.EnderecoDTO;
+import aguaGas.mercado.dto.informacoesCompartilhadas.EnderecoMapper;
 import aguaGas.mercado.model.informacoesCompartilhadas.EnderecoModel;
 import aguaGas.mercado.repository.informacoesCompartilhadas.EnderecoRepository;
 import org.springframework.stereotype.Service;
@@ -12,15 +14,20 @@ import java.util.Optional;
 public class EnderecoServices {
 
     private final EnderecoRepository enderecoRepository;
+    private final EnderecoMapper enderecoMapper;
 
-    public EnderecoServices(EnderecoRepository enderecoRepository) {
+    public EnderecoServices(EnderecoRepository enderecoRepository, EnderecoMapper enderecoMapper) {
         this.enderecoRepository = enderecoRepository;
+        this.enderecoMapper = enderecoMapper;
     }
 
     // Salvar
-    public EnderecoModel salvarEndereco(EnderecoModel enderecoModel) {
-        enderecoModel.setEnderecoAtivo(true);
-        return enderecoRepository.save(enderecoModel);
+    public EnderecoDTO salvarEndereco(EnderecoDTO enderecoDTO) {
+        EnderecoModel enderecoSalvo = enderecoMapper.map(enderecoDTO);
+        enderecoSalvo.setEnderecoAtivo(true);
+
+        enderecoSalvo = enderecoRepository.save(enderecoSalvo);
+        return enderecoMapper.map(enderecoSalvo);
     }
 
     // Atualizar

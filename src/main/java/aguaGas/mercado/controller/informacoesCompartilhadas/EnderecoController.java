@@ -1,7 +1,9 @@
 package aguaGas.mercado.controller.informacoesCompartilhadas;
 
+import aguaGas.mercado.dto.informacoesCompartilhadas.EnderecoDTO;
 import aguaGas.mercado.model.informacoesCompartilhadas.EnderecoModel;
 import aguaGas.mercado.services.informacoesCompartilhadas.EnderecoServices;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,10 +20,11 @@ public class EnderecoController {
     }
 
     //Salvar
-    @PostMapping
-    public ResponseEntity<EnderecoModel>cadastrarEndereco(@RequestBody EnderecoModel enderecoModel) {
-        EnderecoModel salvar  = enderecoServices.salvarEndereco(enderecoModel);
-        return ResponseEntity.ok().body(salvar);
+    @PostMapping("/salvar")
+    public ResponseEntity<EnderecoDTO>cadastrarEndereco(@RequestBody EnderecoDTO endereco) {
+        EnderecoDTO enderecoDTO = enderecoServices.salvarEndereco(endereco);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(enderecoDTO);
     }
 
     //Atualizar
