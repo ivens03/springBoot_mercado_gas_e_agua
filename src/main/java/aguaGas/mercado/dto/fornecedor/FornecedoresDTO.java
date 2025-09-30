@@ -1,5 +1,6 @@
 package aguaGas.mercado.dto.fornecedor;
 
+import aguaGas.mercado.dto.informacoesCompartilhadas.EnderecoDTO;
 import aguaGas.mercado.model.informacoesCompartilhadas.EnderecoModel;
 
 import java.util.Objects;
@@ -12,19 +13,19 @@ public class FornecedoresDTO {
     private String telefoneFornecedor;
     private String emailFornecedor;
     private boolean fornecedorAtivo;
-    private EnderecoModel endereco;
+    private EnderecoDTO enderecoDTO;
 
     public FornecedoresDTO() {
     }
 
-    public FornecedoresDTO(Long idFornecedor, String nomeFornecedor, String cnpjFornecedor, String telefoneFornecedor, String emailFornecedor, boolean fornecedorAtivo, EnderecoModel endereco) {
+    public FornecedoresDTO(Long idFornecedor, String nomeFornecedor, String cnpjFornecedor, String telefoneFornecedor, String emailFornecedor, boolean fornecedorAtivo, EnderecoDTO enderecoDTO) {
         this.idFornecedor = idFornecedor;
         this.nomeFornecedor = nomeFornecedor;
         this.cnpjFornecedor = cnpjFornecedor;
         this.telefoneFornecedor = telefoneFornecedor;
         this.emailFornecedor = emailFornecedor;
         this.fornecedorAtivo = fornecedorAtivo;
-        this.endereco = endereco;
+        this.enderecoDTO = enderecoDTO;
     }
 
     public Long getIdFornecedor() {
@@ -75,12 +76,12 @@ public class FornecedoresDTO {
         this.fornecedorAtivo = fornecedorAtivo;
     }
 
-    public EnderecoModel getEndereco() {
-        return endereco;
+    public EnderecoDTO getEnderecoDTO() {
+        return enderecoDTO;
     }
 
-    public void setEndereco(EnderecoModel endereco) {
-        this.endereco = endereco;
+    public void setEnderecoDTO(EnderecoDTO enderecoDTO) {
+        this.enderecoDTO = enderecoDTO;
     }
 
     @Override
@@ -92,7 +93,7 @@ public class FornecedoresDTO {
                 ", telefoneFornecedor='" + telefoneFornecedor + '\'' +
                 ", emailFornecedor='" + emailFornecedor + '\'' +
                 ", fornecedorAtivo=" + fornecedorAtivo +
-                ", endereco=" + endereco +
+                ", endereco=" + enderecoDTO +
                 '}';
     }
 
@@ -100,11 +101,11 @@ public class FornecedoresDTO {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         FornecedoresDTO that = (FornecedoresDTO) o;
-        return fornecedorAtivo == that.fornecedorAtivo && Objects.equals(idFornecedor, that.idFornecedor) && Objects.equals(nomeFornecedor, that.nomeFornecedor) && Objects.equals(cnpjFornecedor, that.cnpjFornecedor) && Objects.equals(telefoneFornecedor, that.telefoneFornecedor) && Objects.equals(emailFornecedor, that.emailFornecedor) && Objects.equals(endereco, that.endereco);
+        return fornecedorAtivo == that.fornecedorAtivo && Objects.equals(idFornecedor, that.idFornecedor) && Objects.equals(nomeFornecedor, that.nomeFornecedor) && Objects.equals(cnpjFornecedor, that.cnpjFornecedor) && Objects.equals(telefoneFornecedor, that.telefoneFornecedor) && Objects.equals(emailFornecedor, that.emailFornecedor) && Objects.equals(enderecoDTO, that.enderecoDTO);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idFornecedor, nomeFornecedor, cnpjFornecedor, telefoneFornecedor, emailFornecedor, fornecedorAtivo, endereco);
+        return Objects.hash(idFornecedor, nomeFornecedor, cnpjFornecedor, telefoneFornecedor, emailFornecedor, fornecedorAtivo, enderecoDTO);
     }
 }

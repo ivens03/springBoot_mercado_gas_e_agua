@@ -1,7 +1,9 @@
 package aguaGas.mercado.controller.fornecedor;
 
+import aguaGas.mercado.dto.fornecedor.FornecedoresDTO;
 import aguaGas.mercado.model.fornecedor.FornecedoresModel;
 import aguaGas.mercado.services.fornecedor.FornecedoresServices;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,13 +21,14 @@ public class FornecedoresController {
 
     //Salvar
     @PostMapping
-    public ResponseEntity<FornecedoresModel> cadastrarFornecedor(@RequestBody FornecedoresModel fornecedoresModel) {
-        FornecedoresModel salvar = fornecedoresServices.salvarFornecedor(fornecedoresModel);
-        return ResponseEntity.ok().body(salvar);
+    public ResponseEntity<FornecedoresDTO> cadastrarFornecedor(@RequestBody FornecedoresDTO fornecedor) {
+        FornecedoresDTO fornecedoresDTO = fornecedoresServices.salvarFornecedor(fornecedor);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(fornecedoresDTO);
     }
 
     //Atualizar
-    @PutMapping("/{id}")
+/*    @PutMapping("/{id}")
     public ResponseEntity<FornecedoresModel> atualizarFornecedor(@PathVariable Long idFornecedor, @RequestBody FornecedoresModel fornecedoresModel) {
         return fornecedoresServices.listarFornecedorPorId(idFornecedor)
                 .map( fornecedor ->{
@@ -35,7 +38,7 @@ public class FornecedoresController {
                 })
                 .orElseGet(() -> ResponseEntity.notFound().build());
 
-    }
+    }*/
 
     //Listar todos
     @GetMapping("/all")
