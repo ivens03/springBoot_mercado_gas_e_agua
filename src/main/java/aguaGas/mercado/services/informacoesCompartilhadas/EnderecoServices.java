@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class EnderecoServices {
@@ -31,18 +32,29 @@ public class EnderecoServices {
     }
 
     // Atualizar
-    public EnderecoModel atualizarEndereco(EnderecoModel enderecoModel) {
-        return enderecoRepository.save(enderecoModel);
+    public EnderecoDTO atualizarEndereco(Long idEndereco, EnderecoDTO enderecoDTO) {
+        Optional<EnderecoModel> optionalEndereco = enderecoRepository.findById(idEndereco);
+        if (optionalEndereco.isPresent()) {
+            EnderecoModel enderecoExistente = optionalEndereco.get();
+            enderecoExistente.atualizarEnderecoComDTO(enderecoDTO);
+            EnderecoModel enderecoSalvo = enderecoRepository.save(enderecoExistente);
+            return enderecoMapper.map(enderecoSalvo);
+        }
+        return null;
     }
 
     // Listar todos
-    public List<EnderecoModel> listarTodosEnderecos() {
-        return enderecoRepository.findByEnderecoAtivoTrue();
+    public List<EnderecoDTO> listarTodosEnderecos() {
+        List<EnderecoModel> todosEndereco = enderecoRepository.findByEnderecoAtivoTrue();
+        return todosEndereco.stream()
+                .map(enderecoMapper::map)
+                .collect(Collectors.toList());
     }
 
     // Listar um por vez
-    public Optional<EnderecoModel> buscarEnderecoPorVez(Long idEndereco) {
-        return enderecoRepository.findById(idEndereco);
+    public EnderecoDTO buscarEnderecoPorVez(Long idEndereco) {
+        Optional<EnderecoModel> enderecoModelOptional = enderecoRepository.findById(idEndereco);
+        return enderecoModelOptional.map(enderecoMapper::map).orElse(null);
     }
 
     // Delete logico

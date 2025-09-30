@@ -10,14 +10,14 @@ public class EnderecoDTO {
     private String logradouro;
     private String cep;
     private String bairro;
-    private int numeroLogradouro;
+    private Integer numeroLogradouro;
     private String complemento;
     private Boolean enderecoAtivo;
 
     public EnderecoDTO() {
     }
 
-    public EnderecoDTO(Long idEndereco, String estado, String cidade, String logradouro, String cep, String bairro, int numeroLogradouro, String complemento, Boolean enderecoAtivo) {
+    public EnderecoDTO(Long idEndereco, String estado, String cidade, String logradouro, String cep, String bairro, Integer numeroLogradouro, String complemento, Boolean enderecoAtivo) {
         this.idEndereco = idEndereco;
         this.estado = estado;
         this.cidade = cidade;
@@ -77,11 +77,11 @@ public class EnderecoDTO {
         this.bairro = bairro;
     }
 
-    public int getNumeroLogradouro() {
+    public Integer getNumeroLogradouro() {
         return numeroLogradouro;
     }
 
-    public void setNumeroLogradouro(int numeroLogradouro) {
+    public void setNumeroLogradouro(Integer numeroLogradouro) {
         this.numeroLogradouro = numeroLogradouro;
     }
 

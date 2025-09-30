@@ -28,37 +28,42 @@ public class EnderecoController {
     }
 
     //Atualizar
-    @PutMapping("/{id}")
-    public ResponseEntity<EnderecoModel> atualizarEndereco(@PathVariable Long idEndereco, @RequestBody EnderecoModel enderecoModel) {
-        return enderecoServices.buscarEnderecoPorVez(idEndereco)
-                .map( endereco -> {
-                    endereco.setIdEndereco(idEndereco);
-                    EnderecoModel atualizacao = enderecoServices.atualizarEndereco(endereco);
-                    return ResponseEntity.ok().body(atualizacao);
-                })
-                .orElseGet(() -> ResponseEntity.notFound().build());
+    @PutMapping("atualizar/{idEndereco}")
+    public ResponseEntity<?> atualizarEndereco(@PathVariable Long idEndereco, @RequestBody EnderecoDTO enderecoDTO) {
+        EnderecoDTO endereco = enderecoServices.atualizarEndereco(idEndereco, enderecoDTO);
+        if (endereco != null) {
+            return ResponseEntity.ok(endereco);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Endereço não foi encontrado.");
+        }
     }
 
     //Listar todos
     @GetMapping("/all")
-    public ResponseEntity<List<EnderecoModel>> listagemEnderecos() {
-        List<EnderecoModel> listagemDeTodosEnderecos = enderecoServices.listarTodosEnderecos();
+    public ResponseEntity<List<EnderecoDTO>> listagemEnderecos() {
+        List<EnderecoDTO> listagemDeTodosEnderecos = enderecoServices.listarTodosEnderecos();
         return ResponseEntity.ok(listagemDeTodosEnderecos);
     }
 
     //Listagem por id
-    @GetMapping("/{id}")
-    public ResponseEntity<EnderecoModel> listarEnderecoPorId(@PathVariable Long idEndereco) {
-        return enderecoServices.buscarEnderecoPorVez(idEndereco)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    @GetMapping("/{idEndereco}")
+    public ResponseEntity<?> listarEnderecoPorId(@PathVariable Long idEndereco) {
+        EnderecoDTO enderecoDTO = enderecoServices.buscarEnderecoPorVez(idEndereco);
+        if (enderecoDTO != null) {
+            return ResponseEntity.ok(enderecoDTO);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Endereço não foi encontrado.");
+        }
     }
 
     //Deletar
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletarEndereco(@PathVariable Long idEndereco) {
-        enderecoServices.apagarEndereco(idEndereco);
-        return ResponseEntity.noContent().build();
+    @DeleteMapping("apagar/{idEndereco}")
+    public ResponseEntity<String> deletarEndereco(@PathVariable Long idEndereco) {
+        if(enderecoServices.buscarEnderecoPorVez(idEndereco) != null) {
+            enderecoServices.apagarEndereco(idEndereco);
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("O endereço não foi encontrado.");
     }
 
 }

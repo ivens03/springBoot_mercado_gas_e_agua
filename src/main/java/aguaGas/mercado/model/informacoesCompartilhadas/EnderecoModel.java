@@ -1,5 +1,6 @@
 package aguaGas.mercado.model.informacoesCompartilhadas;
 
+import aguaGas.mercado.dto.informacoesCompartilhadas.EnderecoDTO;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -17,13 +18,13 @@ public class EnderecoModel implements Serializable {
     private String logradouro;
     private String cep;
     private String bairro;
-    private int numeroLogradouro;
+    private Integer numeroLogradouro;
     private String complemento;
     private Boolean enderecoAtivo;
 
     public EnderecoModel() {}
 
-    public EnderecoModel(Long idEndereco, String estado, String cidade, String logradouro, String cep, String bairro, int numeroLogradouro, String complemento, Boolean enderecoAtivo) {
+    public EnderecoModel(Long idEndereco, String estado, String cidade, String logradouro, String cep, String bairro, Integer numeroLogradouro, String complemento, Boolean enderecoAtivo) {
         this.idEndereco = idEndereco;
         this.estado = estado;
         this.cidade = cidade;
@@ -33,6 +34,33 @@ public class EnderecoModel implements Serializable {
         this.numeroLogradouro = numeroLogradouro;
         this.complemento = complemento;
         this.enderecoAtivo = enderecoAtivo;
+    }
+
+    public void atualizarEnderecoComDTO(EnderecoDTO enderecoDTO) {
+        if (enderecoDTO.getEstado() != null) {
+            this.estado = enderecoDTO.getEstado();
+        }
+        if (enderecoDTO.getCidade() != null) {
+            this.cidade = enderecoDTO.getCidade();
+        }
+        if (enderecoDTO.getLogradouro() != null) {
+            this.logradouro = enderecoDTO.getLogradouro();
+        }
+        if (enderecoDTO.getCep() != null) {
+            this.cep = enderecoDTO.getCep();
+        }
+        if (enderecoDTO.getBairro() != null) {
+            this.bairro = enderecoDTO.getBairro();
+        }
+        if (enderecoDTO.getNumeroLogradouro() != null) {
+            this.numeroLogradouro = enderecoDTO.getNumeroLogradouro();
+        }
+        if (enderecoDTO.getComplemento() != null) {
+            this.complemento = enderecoDTO.getComplemento();
+        }
+        if (enderecoDTO.getEnderecoAtivo() != null) {
+            this.enderecoAtivo = enderecoDTO.getEnderecoAtivo();
+        }
     }
 
     public Long getIdEndereco() {
@@ -83,11 +111,11 @@ public class EnderecoModel implements Serializable {
         this.bairro = bairro;
     }
 
-    public int getNumeroLogradouro() {
+    public Integer getNumeroLogradouro() {
         return numeroLogradouro;
     }
 
-    public void setNumeroLogradouro(int numeroLogradouro) {
+    public void setNumeroLogradouro(Integer numeroLogradouro) {
         this.numeroLogradouro = numeroLogradouro;
     }
 
