@@ -1,10 +1,17 @@
 package aguaGas.mercado.dto.fornecedor;
 
+import aguaGas.mercado.dto.informacoesCompartilhadas.EnderecoMapper;
 import aguaGas.mercado.model.fornecedor.FornecedoresModel;
 import org.springframework.stereotype.Component;
 
 @Component
 public class FornecedoresMapper {
+
+    private final EnderecoMapper enderecoMapper;
+
+    public FornecedoresMapper(EnderecoMapper enderecoMapper) {
+        this.enderecoMapper = enderecoMapper;
+    }
 
     public FornecedoresModel map(FornecedoresDTO fornecedoresDTO) {
 
@@ -16,6 +23,10 @@ public class FornecedoresMapper {
         fornecedoresModel.setTelefoneFornecedor(fornecedoresDTO.getTelefoneFornecedor());
         fornecedoresModel.setEmailFornecedor(fornecedoresDTO.getEmailFornecedor());
         fornecedoresModel.setFornecedorAtivo(fornecedoresDTO.isFornecedorAtivo());
+
+        if (fornecedoresDTO.getEnderecoDTO() != null) {
+            fornecedoresModel.setEndereco(enderecoMapper.map(fornecedoresDTO.getEnderecoDTO()));
+        }
 
         return fornecedoresModel;
     }
@@ -29,6 +40,10 @@ public class FornecedoresMapper {
         fornecedoresDTO.setTelefoneFornecedor(fornecedoresModel.getTelefoneFornecedor());
         fornecedoresDTO.setEmailFornecedor(fornecedoresModel.getEmailFornecedor());
         fornecedoresDTO.setFornecedorAtivo(fornecedoresModel.isFornecedorAtivo());
+
+        if (fornecedoresModel.getEndereco() != null) {
+            fornecedoresDTO.setEnderecoDTO(enderecoMapper.map(fornecedoresModel.getEndereco()));
+        }
 
         return fornecedoresDTO;
     }

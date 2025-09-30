@@ -1,11 +1,14 @@
 package aguaGas.mercado.services.fornecedor;
 
+import aguaGas.mercado.dto.fornecedor.FornecedoresDTO;
+import aguaGas.mercado.dto.fornecedor.FornecedoresMapper;
+import aguaGas.mercado.dto.informacoesCompartilhadas.EnderecoDTO;
 import aguaGas.mercado.model.fornecedor.FornecedoresModel;
 import aguaGas.mercado.repository.fornecedor.FornecedoresRepository;
+import aguaGas.mercado.services.informacoesCompartilhadas.EnderecoServices;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,15 +16,23 @@ import java.util.Optional;
 public class FornecedoresServices {
 
     private final FornecedoresRepository fornecedoresRepository;
+    private final FornecedoresMapper fornecedoresMapper;
+    private final EnderecoServices enderecoServices;
 
-    public FornecedoresServices(FornecedoresRepository fornecedoresRepository) {
+    public FornecedoresServices(FornecedoresRepository fornecedoresRepository, FornecedoresMapper fornecedoresMapper, EnderecoServices enderecoServices) {
         this.fornecedoresRepository = fornecedoresRepository;
+        this.fornecedoresMapper = fornecedoresMapper;
+        this.enderecoServices = enderecoServices;
     }
 
     // Salvar
-    public FornecedoresModel salvarFornecedor(FornecedoresModel fornecedoresModel) {
-        fornecedoresModel.setFornecedorAtivo(true);
-        return fornecedoresRepository.save(fornecedoresModel);
+    @Transactional
+    public FornecedoresDTO salvarFornecedor(FornecedoresDTO fornecedoresDTO) {
+        FornecedoresModel fornecedorParaSalvar = fornecedoresMapper.map(fornecedoresDTO);
+        fornecedorParaSalvar.setFornecedorAtivo(true);
+        fornecedorParaSalvar.getEndereco().setEnderecoAtivo(true);
+        FornecedoresModel fornecedorSalvo = fornecedoresRepository.save(fornecedorParaSalvar);
+        return fornecedoresMapper.map(fornecedorSalvo);
     }
 
     // Atualizar
