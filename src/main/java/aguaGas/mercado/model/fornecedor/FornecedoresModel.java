@@ -1,5 +1,6 @@
 package aguaGas.mercado.model.fornecedor;
 
+import aguaGas.mercado.dto.fornecedor.FornecedoresDTO;
 import aguaGas.mercado.model.informacoesCompartilhadas.EnderecoModel;
 import jakarta.persistence.*;
 
@@ -34,6 +35,37 @@ public class FornecedoresModel implements Serializable {
         this.emailFornecedor = emailFornecedor;
         this.fornecedorAtivo = fornecedorAtivo;
         this.endereco = endereco;
+    }
+
+    public void atualizarFornecedorComDTO(FornecedoresDTO fornecedoresDTO) {
+        if (fornecedoresDTO.getNomeFornecedor() != null) {
+            setNomeFornecedor(fornecedoresDTO.getNomeFornecedor());
+        }
+        if (fornecedoresDTO.getCnpjFornecedor() != null) {
+            setCnpjFornecedor(fornecedoresDTO.getCnpjFornecedor());
+        }
+        if (fornecedoresDTO.getTelefoneFornecedor() != null) {
+            setTelefoneFornecedor(fornecedoresDTO.getTelefoneFornecedor());
+        }
+        if (fornecedoresDTO.getEmailFornecedor() != null) {
+            setEmailFornecedor(fornecedoresDTO.getEmailFornecedor());
+        }
+        if (fornecedoresDTO.isFornecedorAtivo() != fornecedoresDTO.isFornecedorAtivo()) {
+            setFornecedorAtivo(fornecedoresDTO.isFornecedorAtivo());
+        }
+
+        if (fornecedoresDTO.getEnderecoDTO() != null) {
+            if (this.endereco == null) {
+                this.endereco = new EnderecoModel();
+            }
+            this.endereco.setEstado(fornecedoresDTO.getEnderecoDTO().getEstado());
+            this.endereco.setCidade(fornecedoresDTO.getEnderecoDTO().getCidade());
+            this.endereco.setLogradouro(fornecedoresDTO.getEnderecoDTO().getLogradouro());
+            this.endereco.setCep(fornecedoresDTO.getEnderecoDTO().getCep());
+            this.endereco.setBairro(fornecedoresDTO.getEnderecoDTO().getBairro());
+            this.endereco.setNumeroLogradouro(fornecedoresDTO.getEnderecoDTO().getNumeroLogradouro());
+            this.endereco.setComplemento(fornecedoresDTO.getEnderecoDTO().getComplemento());
+        }
     }
 
     public Long getIdFornecedor() {

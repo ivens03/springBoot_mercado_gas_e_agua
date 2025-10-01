@@ -2,7 +2,6 @@ package aguaGas.mercado.services.fornecedor;
 
 import aguaGas.mercado.dto.fornecedor.FornecedoresDTO;
 import aguaGas.mercado.dto.fornecedor.FornecedoresMapper;
-import aguaGas.mercado.dto.informacoesCompartilhadas.EnderecoDTO;
 import aguaGas.mercado.model.fornecedor.FornecedoresModel;
 import aguaGas.mercado.repository.fornecedor.FornecedoresRepository;
 import aguaGas.mercado.services.informacoesCompartilhadas.EnderecoServices;
@@ -11,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class FornecedoresServices {
@@ -36,18 +36,30 @@ public class FornecedoresServices {
     }
 
     // Atualizar
-    public FornecedoresModel atualizarFornecedor(FornecedoresModel fornecedoresModel) {
-        return fornecedoresRepository.save(fornecedoresModel);
+    public FornecedoresDTO atualizarFornecedor(Long idFornecedor, FornecedoresDTO fornecedoresDTO) {
+        Optional<FornecedoresModel> optionalFornecedore = fornecedoresRepository.findById(idFornecedor);
+        if (optionalFornecedore.isPresent()) {
+            FornecedoresModel fornecedoreExistente = optionalFornecedore.get();
+            fornecedoreExistente.atualizarFornecedorComDTO(fornecedoresDTO);
+            FornecedoresModel fornecedoreSalvar = fornecedoresRepository.save(fornecedoreExistente);
+            return fornecedoresMapper.map(fornecedoreSalvar);
+        }
+        return null;
     }
 
     // Listar todos
-    public List<FornecedoresModel> listarFornecedores() {
-        return fornecedoresRepository.findByFornecedorAtivoTrue();
+    public List<FornecedoresDTO> listarFornecedores() {
+        List<FornecedoresModel> todosFornecedores = fornecedoresRepository.findByFornecedorAtivoTrue();
+        return todosFornecedores.stream()
+                .map(fornecedoresMapper::map)
+                .collect(Collectors.toList());
     }
 
     // Listar um por vez
-    public Optional<FornecedoresModel> listarFornecedorPorId(Long idFornecedor) {
-        return fornecedoresRepository.findById(idFornecedor);
+    public FornecedoresDTO listarFornecedorPorId(Long idFornecedor) {
+        Optional<FornecedoresModel> fornecedoresModelOptional = fornecedoresRepository.findById(idFornecedor);
+        return fornecedoresModelOptional.map(fornecedoresMapper::map)
+                .orElse(null);
     }
 
     //  Apagar

@@ -1,7 +1,6 @@
 package aguaGas.mercado.controller.fornecedor;
 
 import aguaGas.mercado.dto.fornecedor.FornecedoresDTO;
-import aguaGas.mercado.model.fornecedor.FornecedoresModel;
 import aguaGas.mercado.services.fornecedor.FornecedoresServices;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,31 +26,41 @@ public class FornecedoresController {
                 .body(fornecedoresDTO);
     }
 
-    //Atualizar
-/*    @PutMapping("/{id}")
-    public ResponseEntity<FornecedoresModel> atualizarFornecedor(@PathVariable Long idFornecedor, @RequestBody FornecedoresModel fornecedoresModel) {
-        return fornecedoresServices.listarFornecedorPorId(idFornecedor)
-                .map( fornecedor ->{
-                    fornecedor.setIdFornecedor(idFornecedor);
-                    FornecedoresModel atualizacao = fornecedoresServices.salvarFornecedor(fornecedoresModel);
-                    return ResponseEntity.ok().body(atualizacao);
-                })
-                .orElseGet(() -> ResponseEntity.notFound().build());
-
-    }*/
-
     //Listar todos
     @GetMapping("/all")
-    public ResponseEntity<List<FornecedoresModel>> listarFornecedores() {
-        List<FornecedoresModel> listagemDeTodosFornecedores = fornecedoresServices.listarFornecedores();
+    public ResponseEntity<List<FornecedoresDTO>> listarFornecedores() {
+        List<FornecedoresDTO> listagemDeTodosFornecedores = fornecedoresServices.listarFornecedores();
         return ResponseEntity.ok(listagemDeTodosFornecedores);
     }
 
-    //Listagem por id
-    @GetMapping("/{id}")
-    public ResponseEntity<FornecedoresModel> listarFornecedorPorId(@PathVariable Long id_fornecedor) {
-        return fornecedoresServices.listarFornecedorPorId(id_fornecedor)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    // Listar um por vez
+    @GetMapping("/{idFornecedor}")
+    public ResponseEntity<?> listarFornecedorPorId(@PathVariable Long idFornecedor) {
+        FornecedoresDTO fornecedoresDTO = fornecedoresServices.listarFornecedorPorId(idFornecedor);
+        if (fornecedoresDTO != null) {
+            return ResponseEntity.ok(fornecedoresDTO);
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Fornecedor não foi encontrado");
+    }
+
+    //Atualizar
+    @PutMapping("/atualizar/{idFornecedor}")
+    public ResponseEntity<?> atualizarFornecedor(@PathVariable Long idFornecedor, @RequestBody FornecedoresDTO fornecedoresDTO) {
+        FornecedoresDTO fornecedor = fornecedoresServices.atualizarFornecedor(idFornecedor, fornecedoresDTO);
+        if (fornecedoresDTO != null) {
+            return ResponseEntity.ok(fornecedor);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Fornecedor não foi encontrado");
+        }
+    }
+
+    //Deletar
+    @DeleteMapping("/apagar/{idFornecedor}")
+    public ResponseEntity<String> deletarFornecedor(@PathVariable Long idFornecedor) {
+        if (fornecedoresServices.listarFornecedorPorId(idFornecedor) != null) {
+            fornecedoresServices.apagarFornecedor(idFornecedor);
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("O fornecedor não foi encontrado.");
     }
 }
