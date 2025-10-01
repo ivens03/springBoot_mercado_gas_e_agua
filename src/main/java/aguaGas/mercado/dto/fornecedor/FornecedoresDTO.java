@@ -1,7 +1,6 @@
 package aguaGas.mercado.dto.fornecedor;
 
 import aguaGas.mercado.dto.informacoesCompartilhadas.EnderecoDTO;
-import aguaGas.mercado.model.informacoesCompartilhadas.EnderecoModel;
 
 import java.util.Objects;
 
